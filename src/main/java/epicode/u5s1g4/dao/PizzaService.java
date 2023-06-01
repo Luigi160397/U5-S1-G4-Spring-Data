@@ -39,4 +39,10 @@ public class PizzaService {
 
 		return menuRepo.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
 	}
+
+	public void findByIdAndDelete(UUID id) throws ItemNotFoundException {
+		Pizza found = this.findById(id);
+		menuRepo.delete(found);
+		System.out.println("Pizza eliminata!");
+	}
 }

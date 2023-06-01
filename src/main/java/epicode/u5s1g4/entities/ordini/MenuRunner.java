@@ -63,9 +63,27 @@ public class MenuRunner implements CommandLineRunner {
 			System.out.println(e);
 		}
 		System.out.println();
+		try {
+			System.out.println(drinkService.findById(UUID.fromString("10549d87-b2e1-4d71-b515-d2eed1509f69")));
+
+		} catch (ItemNotFoundException e) {
+			System.out.println(e);
+		}
+		System.out.println();
 		System.out.println("------------------------- FindAll -----------------------------");
 		pizzaService.findAll().forEach(pizza -> System.out.println(pizza));
+		System.out.println();
+		drinkService.findAll().forEach(drink -> System.out.println(drink));
 
+		System.out.println();
+		System.out.println("------------------------- FindByIdAndDelete -----------------------------");
+
+		try {
+			pizzaService.findByIdAndDelete(UUID.fromString("8b94d684-90ab-4563-81f6-14c1ebcc9807"));
+
+		} catch (ItemNotFoundException e) {
+			System.out.println(e);
+		}
 		ctx.close();
 	}
 }

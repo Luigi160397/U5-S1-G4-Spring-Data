@@ -1,12 +1,14 @@
 package epicode.u5s1g4.dao;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import epicode.u5s1g4.entities.ExtraAdditionDecorator;
 import epicode.u5s1g4.entities.Pizza;
+import epicode.u5s1g4.exceptions.ItemNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -31,5 +33,10 @@ public class PizzaService {
 
 	public List<Pizza> findAll() {
 		return menuRepo.findAll();
+	}
+
+	public Pizza findById(UUID id) throws ItemNotFoundException {
+
+		return menuRepo.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
 	}
 }

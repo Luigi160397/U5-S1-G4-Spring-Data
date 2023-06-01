@@ -1,5 +1,7 @@
 package epicode.u5s1g4.entities.ordini;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +18,7 @@ import epicode.u5s1g4.entities.Ferrarelle;
 import epicode.u5s1g4.entities.HawaianaDecorator;
 import epicode.u5s1g4.entities.MaxiPizzaDecorator;
 import epicode.u5s1g4.entities.Pizza;
+import epicode.u5s1g4.exceptions.ItemNotFoundException;
 
 @Component
 public class MenuRunner implements CommandLineRunner {
@@ -51,6 +54,17 @@ public class MenuRunner implements CommandLineRunner {
 //		pizzaService.saveDecoratedPizza(margheritaMaxi);
 //		drinkService.save(coca);
 //		drinkService.save(ferrarelle);
+
+		System.out.println("------------------------- FindById -----------------------------");
+		try {
+			System.out.println(pizzaService.findById(UUID.fromString("8b94d684-90ab-4563-81f6-14c1ebcc9807")));
+
+		} catch (ItemNotFoundException e) {
+			System.out.println(e);
+		}
+		System.out.println();
+		System.out.println("------------------------- FindAll -----------------------------");
+		pizzaService.findAll().forEach(pizza -> System.out.println(pizza));
 
 		ctx.close();
 	}

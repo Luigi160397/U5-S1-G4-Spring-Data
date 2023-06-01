@@ -14,6 +14,6 @@ public class DrinkService {
 
 	public void save(Drink d) {
 		drinkRepo.save(d);
-		log.info("Prodotto salvato nel DB");
+		log.info("Drink salvato");
 	}
 }

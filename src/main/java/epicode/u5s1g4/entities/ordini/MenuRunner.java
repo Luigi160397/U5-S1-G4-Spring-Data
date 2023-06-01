@@ -22,16 +22,16 @@ public class MenuRunner implements CommandLineRunner {
 	@Value("${application.costoCoperto}")
 	private double costoCoperto;
 	@Autowired
-	PizzaService menuService;
+	PizzaService pizzaService;
 	@Autowired
 	DrinkService drinkService;
 
 	@Override
 	public void run(String... args) throws Exception {
-		menu(costoCoperto, menuService, drinkService);
+		menu(costoCoperto, pizzaService, drinkService);
 	}
 
-	public static void menu(double costoCoperto, PizzaService menuService, DrinkService drinkService) {
+	public static void menu(double costoCoperto, PizzaService pizzaService, DrinkService drinkService) {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(BeansConfiguration.class);
 		System.out.println();
 
@@ -44,6 +44,13 @@ public class MenuRunner implements CommandLineRunner {
 		ExtraPepeDecorator boscaiolaPepata = new ExtraPepeDecorator(boscaiola);
 		Ferrarelle ferrarelle = (Ferrarelle) ctx.getBean("ferrarelle");
 		CocaCola coca = (CocaCola) ctx.getBean("coca");
+
+//		pizzaService.save(margherita);
+//		pizzaService.saveDecoratedPizza(hawaiana);
+//		pizzaService.saveDecoratedPizza(boscaiolaMaxi);
+//		pizzaService.saveDecoratedPizza(margheritaMaxi);
+//		drinkService.save(coca);
+//		drinkService.save(ferrarelle);
 
 		ctx.close();
 	}

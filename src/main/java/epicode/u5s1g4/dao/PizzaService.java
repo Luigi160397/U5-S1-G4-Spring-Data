@@ -17,7 +17,7 @@ public class PizzaService {
 
 	public void save(Pizza p) {
 		menuRepo.save(p);
-		log.info("Prodotto salvato nel DB");
+		log.info("Pizza salvata");
 	}
 
 	public void saveDecoratedPizza(ExtraAdditionDecorator e) {
